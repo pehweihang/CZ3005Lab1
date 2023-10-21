@@ -1,4 +1,5 @@
 import argparse
+import time
 
 import search
 from graph import Graph
@@ -52,27 +53,37 @@ def main(args: argparse.Namespace):
     )
 
     print("Task 1")
+    start_time = time.perf_counter()
     results = search.without_energy_budget.uniform_cost_search(
         graph, args.source, args.dest
     )
+    end_time = time.perf_counter()
+    elapsed_time = end_time - start_time
+
     if results is not None:
         shortest_path, distance = results
         print(f"Shortest path: {'->'.join(shortest_path)}")
         print(f"Shortest distance: {distance}")
+        print(f"Time Taken to run the search: {elapsed_time}")
         assert distance == get_path_dist(graph, shortest_path)
     else:
         print(f"No path found from {args.source} to {args.dest}")
     print()
 
     print("Task 2")
+    start_time = time.perf_counter()
     results = search.with_energy_budget.uniform_cost_search(
         graph, args.source, args.dest, energy_budget=args.energy_budget
     )
+    end_time = time.perf_counter()
+    elapsed_time = end_time - start_time
+
     if results is not None:
         shortest_path, distance, energy_cost = results
         print(f"Shortest path: {'->'.join(shortest_path)}")
         print(f"Shortest distance: {distance}")
         print(f"Total energy cost: {energy_cost}")
+        print(f"Time Taken to run the search: {elapsed_time}")
         assert distance == get_path_dist(graph, shortest_path)
         assert energy_cost == get_path_energy_cost(graph, shortest_path)
     else:
@@ -80,15 +91,20 @@ def main(args: argparse.Namespace):
     print()
 
     print("Task 3")
+    start_time = time.perf_counter()
     results = search.a_star_search(
         graph, args.source, args.dest , energy_budget=args.energy_budget
     )
+    end_time = time.perf_counter()
+    elapsed_time = end_time - start_time
+
     if results is not None:
         shortest_path, distance, energy_cost = results
         print(f"Shortest path length: {len(shortest_path)}")
         print(f"Shortest path: {'->'.join(shortest_path)}")
         print(f"Shortest distance: {distance}")
         print(f"Total energy cost: {energy_cost}")
+        print(f"Time Taken to run the search: {elapsed_time}")
         assert distance == get_path_dist(graph, shortest_path)
         assert energy_cost == get_path_energy_cost(graph, shortest_path)
     else:
