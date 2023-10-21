@@ -10,10 +10,7 @@ To run the code, run:
 cd src
 python main.py
 ```
-### Parameters:
-```bash
-python main.py -h
-```
+### Options:
 ```
 usage: main.py [-h] [--heuristic-weight HEURISTIC_WEIGHT] [--graph-path GRAPH_PATH] [--coord-path COORD_PATH] [--cost-path COST_PATH] [--dist-path DIST_PATH] [source] [dest] [energy_budget]
 
@@ -41,11 +38,9 @@ options:
 ```bash
 cd src
 python sample_gamma.py
+```
 
-```
-```
-python sample_gamma.py -h
-```
+### Options
 ```
 usage: sample_gamma.py [-h] [--num-samples NUM_SAMPLES] [--seed SEED] [--graph-path GRAPH_PATH] [--coord-path COORD_PATH] [--cost-path COST_PATH] [--dist-path DIST_PATH]
 
