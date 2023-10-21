@@ -4,7 +4,6 @@ import search
 from graph import Graph
 from utils import get_path_dist, get_path_energy_cost
 
-
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -80,20 +79,21 @@ def main(args: argparse.Namespace):
         print(f"No path found from {args.source} to {args.dest}")
     print()
 
-    # print("Task 3")
-    # results = a_star_search(
-    #     graph, args.source, args.dest, energy_budget=args.energy_budget
-    # )
-    # if results is not None:
-    #     shortest_path, distance, energy_cost = results
-    #     print(f"Shortest path: {'->'.join(shortest_path)}")
-    #     print(f"Shortest distance: {distance}")
-    #     print(f"Total energy cost: {energy_cost}")
-    #     assert distance == get_path_dist(graph, shortest_path)
-    #     assert energy_cost == get_path_cost(graph, shortest_path)
-    # else:
-    #     print(f"No path found from {args.source} to {args.dest}")
-    # print()
+    print("Task 3")
+    results = search.a_star_search(
+        graph, args.source, args.dest , energy_budget=args.energy_budget
+    )
+    if results is not None:
+        shortest_path, distance, energy_cost = results
+        print(f"Shortest path length: {len(shortest_path)}")
+        print(f"Shortest path: {'->'.join(shortest_path)}")
+        print(f"Shortest distance: {distance}")
+        print(f"Total energy cost: {energy_cost}")
+        assert distance == get_path_dist(graph, shortest_path)
+        assert energy_cost == get_path_energy_cost(graph, shortest_path)
+    else:
+        print(f"No path found from {args.source} to {args.dest}")
+    print()
 
 
 if __name__ == "__main__":
