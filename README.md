@@ -36,3 +36,30 @@ options:
                         path to dist json
 
 ```
+
+## Sampling for gamma
+```bash
+cd src
+python sample_gamma.py
+
+```
+```
+python sample_gamma.py -h
+```
+```
+usage: sample_gamma.py [-h] [--num-samples NUM_SAMPLES] [--seed SEED] [--graph-path GRAPH_PATH] [--coord-path COORD_PATH] [--cost-path COST_PATH] [--dist-path DIST_PATH]
+
+options:
+  -h, --help            show this help message and exit
+  --num-samples NUM_SAMPLES
+                        Number of shortest paths to sample
+  --seed SEED           random seed
+  --graph-path GRAPH_PATH
+                        path to graph json
+  --coord-path COORD_PATH
+                        path to coord json
+  --cost-path COST_PATH
+                        path to cost json
+  --dist-path DIST_PATH
+                        path to dist json
+```
