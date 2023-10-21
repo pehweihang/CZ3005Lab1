@@ -11,7 +11,7 @@ from graph import Graph
 @dataclasses.dataclass
 class CurrentNode:
     """
-    This dataclass represents the node that is reached during the search.
+    This dataclass represents the node that is reached during search.
     """
 
     node: str
@@ -33,7 +33,7 @@ class CurrentNode:
 
 
 def uniform_cost_search(
-    g: Graph, source: str, dest: str
+    g: Graph, source: str, dest: str, verbose=False
 ) -> Optional[Tuple[List[str], float]]:
     """
     Performs unifrom cost search to find the shortest path between
@@ -55,8 +55,14 @@ def uniform_cost_search(
     pq = PriorityQueue()
     pq.put(CurrentNode(source, 0))
 
+    nodes_searched = set()
+    edges_searched = 0
+
     while not pq.empty():
         cur_node = pq.get()
+
+        if verbose:
+            nodes_searched.add(cur_node.node)
 
         if cur_node.node == dest:
             # find shortest path
@@ -67,12 +73,21 @@ def uniform_cost_search(
                 p = prev[p]
 
             shortest_path.reverse()
+
+            if verbose:
+                print(f"Number of nodes search: {len(nodes_searched)}")
+                print(f"Number of edges search: {edges_searched}")
+
             return shortest_path, cur_node.distance_from_source
 
         for next_node in g[cur_node.node]:
             distance_to_next = cur_node.distance_from_source + g.get_dist(
                 cur_node.node, next_node
             )
+
+            if verbose:
+                edges_searched += 1
+
             if distance_to_next < shortest_distance[next_node]:
                 prev[next_node] = cur_node.node
                 shortest_distance[next_node] = distance_to_next

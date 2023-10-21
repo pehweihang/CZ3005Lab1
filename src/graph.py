@@ -31,6 +31,9 @@ class Graph:
     def _edge_key(self, u: str, v: str) -> str:
         return f"{u},{v}"
 
+    def nodes(self) -> List[str]:
+        return [k for k in self.graph.keys()]
+
     def get_dist(self, u: str, v: str) -> float:
         return self.dist[self._edge_key(u, v)]
 
